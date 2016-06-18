@@ -5,6 +5,6 @@ avatar: resources/avatar.png
 config:
   - name: SM_API_KEY
     friendly_name: SMMRY API Key
-    info: This is an secret option SMMRY 
+    info: This is the  Key required to make JSON requests to the SMMRY API
     type: secret
     global: true

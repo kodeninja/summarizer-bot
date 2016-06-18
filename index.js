@@ -58,7 +58,7 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                 urlToSummarize = urlToSummarize.substring(0, urlToSummarize.lastIndexOf("%3E"));
             }
             console.log("Trying to summarize: %s", urlToSummarize);
-            var smmryUrl = "http://api.smmry.com?SM_API_KEY=" + SM_API_KEY + "&SM_LENGTH=3" + "&SM_WITH_BREAK" + "&SM_URL="+urlToSummarize;
+            var smmryUrl = "http://api.smmry.com?SM_API_KEY=" + SM_API_KEY + "&SM_LENGTH=3" + "&SM_WITH_BREAK" + "&SM_KEYWORD_COUNT=5" + "&SM_URL="+urlToSummarize;
             request.get({url: smmryUrl, json: true}, function(err, response, body) {
                 if(err) {
                     return console.log(err);
@@ -69,12 +69,23 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                 
                 var charCount = body.sm_api_character_count,
                     title = body.sm_api_title,
-                    summary = body.sm_api_content;
+                    summary = body.sm_api_content,
+                    keywords = body.sm_api_keyword_array;
                 
-                summary = ">" + summary.split("[BREAK]").filter(Boolean).join("\n>").trim();
+                summary = "*Summary*:\n" + ">" + summary.split("[BREAK]").filter(Boolean).join("\n>").trim();
                 
-                console.log("››››› Sending summary: %s", summary);
-                bot.reply(message, summary);
+                var keywordsAndSummary = "";
+                if(Array.isArray(keywords) && keywords.length > 0) {
+                    keywordsAndSummary = "*Keywords_*:\n" + keywords.map(function(k) {
+                        return "`" + k + "`";
+                    }).join(", ");
+                    keywordsAndSummary += "\n" + summary;
+                } else {
+                    keywordsAndSummary = summary;
+                }
+
+                console.log("››››› Sending summary: %s", keywordsAndSummary);
+                bot.reply(message, keywordsAndSummary);
             });
 
         }
