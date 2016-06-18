@@ -76,7 +76,7 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                 
                 var keywordsAndSummary = "";
                 if(Array.isArray(keywords) && keywords.length > 0) {
-                    keywordsAndSummary = "*Keywords_*:\n" + keywords.map(function(k) {
+                    keywordsAndSummary = "*Keywords*:\n" + keywords.map(function(k) {
                         return "`" + k + "`";
                     }).join(", ");
                     keywordsAndSummary += "\n" + summary;
