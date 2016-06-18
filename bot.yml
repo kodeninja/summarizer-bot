@@ -3,4 +3,8 @@ description: A very simple, node-based summarizer slack bot
 avatar: resources/avatar.png
 #background: resources/background.png
 config:
- - name: SM_API_KEY
+  - name: SM_API_KEY
+    friendly_name: SMMRY API Key
+    info: This is an secret option SMMRY 
+    type: secret
+    global: true
