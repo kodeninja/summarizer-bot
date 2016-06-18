@@ -4,7 +4,7 @@ var Botkit = require("botkit"),
     _ = require("lodash");
 
 var token = process.env.SLACK_TOKEN,
-    SM_API_KEY = process.env.SM_API_KEY || "42CC180F70"; // FIXME: This API Key needs to be removed!
+    SM_API_KEY = process.env.SM_API_KEY;
     
 var SUMMRY_ERROR_MAPPINGS = {
     "0": "Internal server problem which isn't your fault",

@@ -2,15 +2,11 @@ name: summarizer-bot
 description: A very simple, node-based summarizer slack bot
 avatar: resources/avatar.png
 #background: resources/background.png
-#config:
-#  - name: OPTION
-#    friendly_name: Some Unnecessary Option
-#    info: This is an unnecessary option
-#    default: the default value
-#  - name: SECRET
-#    friendly_name: Shhhh
-#    info: This is a secret option
-#    type: secret
+config:
+ - name: SM_API_KEY
+    friendly_name: SMMRY API Key
+    info: This is a secret option to set the SMMRY API Key
+    type: secret
 #    default: not secret though
 #screenshots:
 #  - screenshot: resources/screenshot1.png
