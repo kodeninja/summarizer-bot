@@ -1,0 +1,32 @@
+{
+  "name": "summarizer-bot",
+  "version": "1.0.0",
+  "description": "A very simple, node-based summarizer slack bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kodeninja/summarizer-bot.git"
+  },
+  "keywords": [
+    "slackbot",
+    "bot",
+    "slack",
+    "summarizer"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kodeninja/summarizer-bot/issues"
+  },
+  "homepage": "https://github.com/kodeninja/summarizer-bot#readme",
+  "dependencies": {
+    "beepboop-botkit": "^1.4.0",
+    "botkit": "~0.1.1",
+    "get-urls": "^5.0.1",
+    "lodash": "^4.13.1",
+    "request": "^2.72.0"
+  }
+}
