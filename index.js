@@ -50,26 +50,33 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
             var urlToSummarize = urls[0];
             if(_.endsWith(urlToSummarize, ",")) {
                 urlToSummarize = urlToSummarize.substring(0, urlToSummarize.lastIndexOf(","));
-                console.log("Trying to summarize: %s", urlToSummarize);
-                var smmryUrl = "http://api.smmry.com?SM_API_KEY=" + SM_API_KEY + "&SM_LENGTH=3" + "&SM_WITH_BREAK" + "&SM_URL="+urlToSummarize;
-                request.get({url: smmryUrl, json: true}, function(err, response, body) {
-                    if(err) {
-                        return console.log(err);
-                    }
-                    if(body.hasOwnProperty("sm_api_error")) {
-                        return console.log("An error occurred: %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error]);
-                    }
-                    
-                    var charCount = body.sm_api_character_count,
-                        title = body.sm_api_title,
-                        summary = body.sm_api_content;
-                    
-                    summary = ">" + summary.split("[BREAK]").filter(Boolean).join("\n>").trim();
-                    
-                    console.log("››››› Sending summary: %s", summary);
-                    bot.reply(message, summary);
-                });
             }
+            if(_.endsWith(urlToSummarize, ">")) {
+                urlToSummarize = urlToSummarize.substring(0, urlToSummarize.lastIndexOf(">"));
+            }
+            if(_.endsWith(urlToSummarize, "%3E")) {
+                urlToSummarize = urlToSummarize.substring(0, urlToSummarize.lastIndexOf("%3E"));
+            }
+            console.log("Trying to summarize: %s", urlToSummarize);
+            var smmryUrl = "http://api.smmry.com?SM_API_KEY=" + SM_API_KEY + "&SM_LENGTH=3" + "&SM_WITH_BREAK" + "&SM_URL="+urlToSummarize;
+            request.get({url: smmryUrl, json: true}, function(err, response, body) {
+                if(err) {
+                    return console.log(err);
+                }
+                if(body.hasOwnProperty("sm_api_error")) {
+                    return console.log("An error occurred: %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error]);
+                }
+                
+                var charCount = body.sm_api_character_count,
+                    title = body.sm_api_title,
+                    summary = body.sm_api_content;
+                
+                summary = ">" + summary.split("[BREAK]").filter(Boolean).join("\n>").trim();
+                
+                console.log("››››› Sending summary: %s", summary);
+                bot.reply(message, summary);
+            });
+
         }
     }
 });
