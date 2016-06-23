@@ -72,7 +72,7 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                     summary = body.sm_api_content,
                     keywords = body.sm_api_keyword_array;
                 
-                summary = "*Summary*:\n" + ">" + summary.split("[BREAK]").filter(Boolean).join("\n>").trim();
+                summary = "*Summary*:\n" + "•" + summary.split("[BREAK]").filter(Boolean).join("\n•").trim();
                 
                 var keywordsAndSummary = "";
                 if(Array.isArray(keywords) && keywords.length > 0) {
