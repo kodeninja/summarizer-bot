@@ -6,6 +6,8 @@ var Botkit = require("botkit"),
 var token = process.env.SLACK_TOKEN,
     SM_API_KEY = process.env.SM_API_KEY;
     
+var USERS = {};
+    
 var SUMMRY_ERROR_MAPPINGS = {
     "0": "Internal server problem which isn't your fault",
     "1": "Incorrect submission variables",
@@ -43,6 +45,26 @@ controller.on("bot_channel_join", function (bot, message) {
 
 controller.hears([".*"], ["mention", "direct_message", "direct_mention"], function(bot, message) {
     console.log("››››› Message received: %j", message);
+    
+    var userID = message.user;
+    var userName = USERS[userID];
+    if(userName) {
+        replyToUser(bot, message, userName);
+    } else {
+        bot.api.users.info({user: userID}, function(err, info) {
+            if(err) {
+                console.log("Failed to fetch user info for user id: %s, with error: ", userID, err);
+            } else {
+                console.log("Found user info%j", info);
+                userName = "@" + info.user.name;
+                USERS[userID] = userName;
+            }
+            replyToUser(bot, message, userName);
+        });
+    }
+});
+
+function replyToUser(bot, message, userName) {
     if(message.text) {
         var urls = extractUrls(message.text);
         if(Array.isArray(urls) && urls.length > 0) {
@@ -69,8 +91,7 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                     }
                     
                     // console.log("%s", require("util").inspect(message, false, 4, false));
-                    
-                    return bot.reply(message, "I'm sorry, but I could not summarize this :disappointed:.");
+                    return bot.reply(message, "I'm sorry," + (userName ? (" " + userName + ", ") :"") +"but I could not summarize this :disappointed:.");
                 }
                 
                 var charCount = body.sm_api_character_count,
@@ -93,10 +114,9 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                 console.log("››››› Sending summary: %s", keywordsAndSummary);
                 bot.reply(message, keywordsAndSummary);
             });
-
         }
     }
-});
+}
 
 controller.hears(["hello", "hi"], ["direct_mention"], function (bot, message) {
   bot.reply(message, "Hello.");
