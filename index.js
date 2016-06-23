@@ -68,9 +68,9 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                         console.log("An error occurred: %s -> %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error], body.sm_api_message);
                     }
                     
-                    console.log("%s", require("util").inspect(message, false, 4, false));
+                    // console.log("%s", require("util").inspect(message, false, 4, false));
                     
-                    return bot.reply(message, "I'm sorry " + message.user + ", but I could not summarize this at the moment :disappointed:.");
+                    return bot.reply(message, "I'm sorry, but I could not summarize this :disappointed:.");
                 }
                 
                 var charCount = body.sm_api_character_count,
