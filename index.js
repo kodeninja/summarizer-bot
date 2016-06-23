@@ -64,7 +64,7 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
                     return console.log(err);
                 }
                 if(body.hasOwnProperty("sm_api_error")) {
-                    return console.log("An error occurred: %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error]);
+                    return console.log("An error occurred: %s -> %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error], body.sm_api_message);
                 }
                 
                 var charCount = body.sm_api_character_count,
