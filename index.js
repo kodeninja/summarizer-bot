@@ -60,11 +60,15 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
             console.log("Trying to summarize: %s", urlToSummarize);
             var smmryUrl = "http://api.smmry.com?SM_API_KEY=" + SM_API_KEY + "&SM_LENGTH=3" + "&SM_WITH_BREAK" + "&SM_KEYWORD_COUNT=5" + "&SM_URL="+urlToSummarize;
             request.get({url: smmryUrl, json: true}, function(err, response, body) {
-                if(err) {
-                    return console.log(err);
-                }
-                if(body.hasOwnProperty("sm_api_error")) {
-                    return console.log("An error occurred: %s -> %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error], body.sm_api_message);
+                if(err || body.hasOwnProperty("sm_api_error")) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    if(body.hasOwnProperty("sm_api_error")) {
+                        console.log("An error occurred: %s -> %s", SUMMRY_ERROR_MAPPINGS[""+body.sm_api_error], body.sm_api_message);
+                    }
+                    
+                    return bot.reply(message, "I'm sorry " + message.user + ", but I could not summarize this at the moment :disappointed:.");
                 }
                 
                 var charCount = body.sm_api_character_count,
