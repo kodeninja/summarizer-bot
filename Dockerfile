@@ -5,3 +5,4 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" \
     && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - \
     && sudo apt-get update && sudo apt-get install google-cloud-sdk
 
+RUN echo "Installed google cloud sdk..."
