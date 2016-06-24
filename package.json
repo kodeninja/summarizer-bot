@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/kodeninja/summarizer-bot#readme",
   "dependencies": {
-    "@google/cloud-debug": "^0.8.3",
     "beepboop-botkit": "^1.4.0",
     "botkit": "~0.1.1",
     "get-urls": "^5.0.1",
     "lodash": "^4.13.1",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "@google/cloud-debug": "^0.8.3"
   }
 }
