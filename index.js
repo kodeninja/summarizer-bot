@@ -2,12 +2,15 @@
 var fs = require("fs");
 var gcloud_app_creds = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
 if(gcloud_app_creds) {
+    console.log("Writing gcloud creds to tmp file...");
     fs.writeFileSync("/tmp/summarizer-bot-a0f9b7bdb9df.json", gcloud_app_creds, "utf-8");
     process.env.GOOGLE_APPLICATION_CREDENTIALS = "/tmp/summarizer-bot-a0f9b7bdb9df.json";
-    // require("@google/cloud-debug");
+    console.log("Enabling gcloud debug module...");
+    require("@google/cloud-debug");
 }
 /////////////////////////////////////////////////
 
+console.log("Starting bot...");
 
 var Botkit = require("botkit"),
     request = require("request"),
