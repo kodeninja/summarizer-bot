@@ -15,6 +15,10 @@ var SUMMRY_ERROR_MAPPINGS = {
     "3": "Summarization error"
 };
 
+console.log("*********************************************");
+console.log("node version: %s", process.version);
+console.log("*********************************************");
+
 var controller = Botkit.slackbot({
   // reconnect to Slack RTM when connection goes bad
   retry: Infinity,
@@ -55,7 +59,7 @@ controller.hears([".*"], ["mention", "direct_message", "direct_mention"], functi
             if(err) {
                 console.log("Failed to fetch user info for user id: %s, with error: ", userID, err);
             } else {
-                console.log("Found user info%j", info);
+                console.log("Found user info: %j", info);
                 userName = "@" + info.user.name;
                 USERS[userID] = userName;
             }
