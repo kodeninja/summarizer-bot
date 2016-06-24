@@ -1,6 +1,6 @@
 FROM node:6.2.2-onbuild
 
-RUN apt-get install -y -q --no-install-recommends \
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
   	sudo \
   	python \
   	&& rm -rf /var/lib/apt/lists/* && apt-get -y autoclean
