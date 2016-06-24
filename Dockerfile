@@ -2,6 +2,7 @@ FROM node:6.2.2-onbuild
 
 RUN apt-get update && apt-get install -y -q --no-install-recommends \
   	sudo \
+  	lsb_release \
   	python \
   	&& rm -rf /var/lib/apt/lists/* && apt-get -y autoclean
 RUN echo $(lsb_release -c -s) 
