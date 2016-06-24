@@ -8,3 +8,13 @@ config:
     info: This is the  Key required to make JSON requests to the SMMRY API
     type: secret
     global: true
+  - name: GCLOUD_PROJECT
+    friendly_name: Google Cloud Project
+    info: This is the Google Cloud Project this object maps to.
+    type: secret
+    global: true
+  - name: GOOGLE_APPLICATION_CREDENTIALS_JSON
+    friendly_name: Google App Creds
+    info: This is the Google App Credentials JSON file location.
+    type: secret
+    global: true

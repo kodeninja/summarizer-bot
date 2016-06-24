@@ -1,3 +1,14 @@
+/////////////////////////////////////////////////
+var fs = require("fs");
+var gcloud_app_creds = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
+if(gcloud_app_creds) {
+    fs.writeFileSync("/tmp/summarizer-bot-a0f9b7bdb9df.json", gcloud_app_creds, "utf-8");
+    process.env.GOOGLE_APPLICATION_CREDENTIALS = "/tmp/summarizer-bot-a0f9b7bdb9df.json";
+    // require("@google/cloud-debug");
+}
+/////////////////////////////////////////////////
+
+
 var Botkit = require("botkit"),
     request = require("request"),
     extractUrls = require("get-urls"),
@@ -5,7 +16,8 @@ var Botkit = require("botkit"),
 
 var token = process.env.SLACK_TOKEN,
     SM_API_KEY = process.env.SM_API_KEY;
-    
+
+
 var USERS = {};
     
 var SUMMRY_ERROR_MAPPINGS = {
@@ -14,10 +26,6 @@ var SUMMRY_ERROR_MAPPINGS = {
     "2": "Intentional restriction (low credits/disabled API key/banned API key)",
     "3": "Summarization error"
 };
-
-console.log("*********************************************");
-console.log("node version: %s", process.version);
-console.log("*********************************************");
 
 var controller = Botkit.slackbot({
   // reconnect to Slack RTM when connection goes bad
