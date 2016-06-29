@@ -23,7 +23,7 @@ config:
     info: This is the Opbeat App Id for this app.
     type: secret
     global: true
-  - name: OPBEAT_ORG_ID
+  - name: OPBEAT_ORGANIZATION_ID
     friendly_name: Opbeat Organization Id
     info: This is the Opbeat Organization Id for this app.
     type: secret

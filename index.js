@@ -1,13 +1,6 @@
 /////////////////////////////////////////////////
-var opbeatAppId = process.env.OPBEAT_APP_ID;
-var opbeatOrgId = process.env.OPBEAT_ORG_ID;
-var opbeatSecret = process.env.OPBEAT_SECRET_TOKEN;
-
-// var opbeat = require("opbeat").start({
-//   appId: opbeatAppId,
-//   organizationId: opbeatOrgId,
-//   secretToken: opbeatSecret
-// });
+// Start the Opbeat agent
+// var opbeat = require("opbeat").start();
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
@@ -74,6 +67,7 @@ controller.on("bot_channel_join", function (bot, message) {
 });
 
 controller.hears([".*"], ["mention", "direct_message", "direct_mention"], function(bot, message) {
+    // opbeat.setTransactionName("mention-dm-drm");
     console.log("››››› Message received: %j", message);
     
     var userID = message.user;
