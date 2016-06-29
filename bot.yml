@@ -18,3 +18,18 @@ config:
     info: This is the Google App Credentials JSON file location.
     type: secret
     global: true
+  - name: OPBEAT_APP_ID
+    friendly_name: Opbeat App Id
+    info: This is the Opbeat App Id for this app.
+    type: secret
+    global: true
+  - name: OPBEAT_ORG_ID
+    friendly_name: Opbeat Organization Id
+    info: This is the Opbeat Organization Id for this app.
+    type: secret
+    global: true
+  - name: OPBEAT_SECRET_TOKEN
+    friendly_name: Opbeat Secret Token
+    info: This is the Opbeat Secret Token for this app.
+    type: secret
+    global: true

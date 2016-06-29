@@ -1,4 +1,16 @@
 /////////////////////////////////////////////////
+var opbeatAppId = process.env.OPBEAT_APP_ID;
+var opbeatOrgId = process.env.OPBEAT_ORG_ID;
+var opbeatSecret = process.env.OPBEAT_SECRET_TOKEN;
+
+// var opbeat = require("opbeat").start({
+//   appId: opbeatAppId,
+//   organizationId: opbeatOrgId,
+//   secretToken: opbeatSecret
+// });
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
 var fs = require("fs");
 var gcloud_app_creds = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
 if(gcloud_app_creds) {
@@ -9,6 +21,9 @@ if(gcloud_app_creds) {
     require("@google/cloud-debug");
 }
 /////////////////////////////////////////////////
+
+
+
 
 console.log("Starting bot...");
 
