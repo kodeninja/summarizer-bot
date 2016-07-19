@@ -25,7 +25,7 @@
   "dependencies": {
     "@google/cloud-debug": "^0.8.3",
     "beepboop-botkit": "^1.4.0",
-    "botkit": "~0.1.1",
+    "botkit": "~0.2.2",
     "get-urls": "^5.0.1",
     "lodash": "^4.13.1",
     "opbeat": "^3.6.14",
