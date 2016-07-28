@@ -44,6 +44,7 @@ var controller = Botkit.slackbot({
 if (token) {
   console.log("Starting in single-team mode");
   controller.spawn({
+    retry: Infinity,
     token: token
   }).startRTM(function (err, bot, payload) {
     if (err) {
